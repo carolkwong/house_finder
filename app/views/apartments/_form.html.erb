@@ -4,20 +4,17 @@
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
   <div class="form-inputs">
-    <%= f.input :status %>
     <%= f.input :address %>
     <%= f.input :price %>
     <%= f.input :latitude %>
     <%= f.input :longtitude %>
-    <%= f.input :decimal %>
     <%= f.input :district %>
     <%= f.input :description %>
     <%= f.input :size %>
-    <%= f.input :year_built %>
+    <%= f.input :year_built, collection: (1950..Date.today.year) %>
     <%= f.input :bedrooms %>
     <%= f.input :elevator %>
     <%= f.input :furnished %>
-    <%= f.input :user %>
   </div>
 
   <div class="form-actions">

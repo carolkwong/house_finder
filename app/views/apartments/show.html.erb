@@ -26,11 +26,6 @@
 </p>
 
 <p>
-  <strong>Decimal:</strong>
-  <%= @apartment.decimal %>
-</p>
-
-<p>
   <strong>District:</strong>
   <%= @apartment.district %>
 </p>
@@ -67,7 +62,7 @@
 
 <p>
   <strong>User:</strong>
-  <%= @apartment.user %>
+  <%= @apartment.user.email %>
 </p>
 
 <%= link_to 'Edit', edit_apartment_path(@apartment) %> |
