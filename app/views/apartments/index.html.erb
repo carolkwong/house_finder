@@ -2,7 +2,7 @@
 
 <h1>Apartments</h1>
 
-<table>
+<table class="table">
   <thead>
     <tr>
       <th>Status</th>
@@ -10,7 +10,6 @@
       <th>Price</th>
       <th>Latitude</th>
       <th>Longtitude</th>
-      <th>Decimal</th>
       <th>District</th>
       <th>Description</th>
       <th>Size</th>
@@ -31,7 +30,6 @@
         <td><%= apartment.price %></td>
         <td><%= apartment.latitude %></td>
         <td><%= apartment.longtitude %></td>
-        <td><%= apartment.decimal %></td>
         <td><%= apartment.district %></td>
         <td><%= apartment.description %></td>
         <td><%= apartment.size %></td>
@@ -39,7 +37,7 @@
         <td><%= apartment.bedrooms %></td>
         <td><%= apartment.elevator %></td>
         <td><%= apartment.furnished %></td>
-        <td><%= apartment.user %></td>
+        <td><%= apartment.user.email %></td>
         <td><%= link_to 'Show', apartment %></td>
         <td><%= link_to 'Edit', edit_apartment_path(apartment) %></td>
         <td><%= link_to 'Destroy', apartment, method: :delete, data: { confirm: 'Are you sure?' } %></td>

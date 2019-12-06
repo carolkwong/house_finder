@@ -4,7 +4,6 @@
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
   <div class="form-inputs">
-    <%= f.input :status, collection:['Available', 'Sold'] %>
     <%= f.input :address %>
     <%= f.input :price %>
     <%= f.input :latitude %>
@@ -16,7 +15,6 @@
     <%= f.input :bedrooms %>
     <%= f.input :elevator %>
     <%= f.input :furnished %>
-    <%= f.association :user, :label_method => lambda { |user| user.email } %>
   </div>
 
   <div class="form-actions">
