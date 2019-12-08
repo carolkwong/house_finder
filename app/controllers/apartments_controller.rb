@@ -4,21 +4,25 @@ class ApartmentsController < ApplicationController
   # GET /apartments
   # GET /apartments.json
   def index
-    @apartments = Apartment.all
+    # @apartments = Apartment.all
+    @apartments = policy_scope(Apartment).order(created_at: :desc)
   end
 
   # GET /apartments/1
   # GET /apartments/1.json
   def show
+    authorize @apartment
   end
 
   # GET /apartments/new
   def new
     @apartment = Apartment.new
+    authorize @apartment
   end
 
   # GET /apartments/1/edit
   def edit
+    authorize @apartment
   end
 
   # POST /apartments
@@ -27,6 +31,8 @@ class ApartmentsController < ApplicationController
     @apartment = Apartment.new(apartment_params)
     @apartment.status = 'Available'
     @apartment.user = current_user
+
+    authorize @apartment
 
     respond_to do |format|
       if @apartment.save
@@ -42,6 +48,7 @@ class ApartmentsController < ApplicationController
   # PATCH/PUT /apartments/1
   # PATCH/PUT /apartments/1.json
   def update
+    authorize @apartment
     respond_to do |format|
       if @apartment.update(apartment_params)
         format.html { redirect_to @apartment, notice: 'Apartment was successfully updated.' }
@@ -56,6 +63,7 @@ class ApartmentsController < ApplicationController
   # DELETE /apartments/1
   # DELETE /apartments/1.json
   def destroy
+    authorize @apartment
     @apartment.destroy
     respond_to do |format|
       format.html { redirect_to apartments_url, notice: 'Apartment was successfully destroyed.' }
