@@ -4,6 +4,28 @@
   <%= f.error_notification %>
 
   <div class="form-inputs">
+
+    <%= f.input :first_name,
+                required: true,
+                autofocus: true,
+                input_html: { autocomplete: "First Name" }%>
+    <%= f.input :last_name,
+                required: true,
+                autofocus: true,
+                input_html: { autocomplete: "Last Name" }%>
+    <%= f.input :date_of_birth,
+                required: true,
+                autofocus: true,
+                input_html: { autocomplete: "Date of Birth" }%>
+    <%= f.input :gender,
+                required: true,
+                autofocus: true,
+                input_html: { autocomplete: "Male or Female" }%>
+    <%= f.input :avatar,
+                required: true,
+                autofocus: true,
+                input_html: { autocomplete: "Please upload your profile picture" }%>
+    <%= f.input :avatar_cache, as: :hidden %>
     <%= f.input :email,
                 required: true,
                 autofocus: true,
