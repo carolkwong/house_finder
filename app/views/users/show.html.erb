@@ -1,0 +1,5 @@
+<h1>users#show</h1>
+<h2>User : <%= @user.email %></h2>
+<!-- TODO: display user profile -->
+<%= link_to 'Edit Profile', edit_profile_user_path(@user), class: "btn btn-primary " %>
+<%= link_to 'Edit Avatar', edit_avatar_user_path(@user), class: "btn btn-primary " %>
