@@ -1,3 +1,21 @@
 <h1>users#edit_avatar</h1>
 
 <!-- TODO: try connect to Cloudinary API and imeplement udpate avatar function -->
+<h2>User : <%= @user.email %></h2>
+<%= simple_form_for(resource, as: resource_name, url: edit_avatar_path) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+
+
+    <%= f.input :avatar,
+                required: true,
+                autofocus: true,
+                input_html: { autocomplete: "Please upload your profile picture" }%>
+    <%= f.input :avatar_cache, as: :hidden %>
+    </div>
+
+  <div class="form-actions">
+    <%= f.button :submit, update_avatar_path %>
+  </div>
+<% end %>
