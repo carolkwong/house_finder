@@ -20,7 +20,11 @@ class UsersController < ApplicationController
 	end
 
 	def update_avatar
-		# TODO : update user avatar according to user input
+		if @user.update(avatar_params)
+		  redirect_to user_path(@user), notice: 'Avatar uploaded.'
+		else
+		  render :edit_avatar, alert: 'Error uploading avatar.'
+		end
 	end
 
 	private

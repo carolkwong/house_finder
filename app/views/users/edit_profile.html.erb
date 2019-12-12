@@ -1,20 +1,14 @@
-
-
-<!-- TODO : Update user profile, as a good practice for using simple_form -->
-
-<%= simple_form_for(@user, :url => update_profile_user_path, html: { class: 'form' }) do |f| %>
-	<div class="row">
-		<div class="col-md-6 offset-md-3">
-			<h1 class="my-4">users#edit_profile</h1>
-
-			<%= f.input :first_name, required: true %>
+<div class="row">
+    <div class="col-md-6 offset-md-3">
+    	<h1 class="my-4">Edit Profile</h1>
+        <%= simple_form_for(@user, :url => update_profile_user_path, html: { class: 'form' }) do |f| %>
+	        <%= f.input :first_name, required: true %>
 	        <%= f.input :last_name, required: true %>
 	        <%= f.input :date_of_birth, as: :date, required: true, label:"Date of Birth" %>
 	        <%= f.input :gender, required: true, collection:["Male", "Female"] %>
 	        <%= f.input :phone, required: true, label:"Contact Number" %>
-
-			<div class="my-4"></div>
-		    <%= f.button :submit, 'Save Changes', :class=>"btn btn-primary w-100" %>
-	    </div>
-	</div>
-<% end %>
+	        <div class="my-4"></div>
+	        <%= f.button :submit, 'Save Changes', :class=>"btn btn-primary w-100" %>
+        <% end %>
+    </div>
+</div>

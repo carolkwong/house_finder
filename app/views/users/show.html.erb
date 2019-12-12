@@ -1,4 +1,10 @@
 <h1>users#show</h1>
+<% if @user.avatar.present? %>
+    <%= cl_image_tag @user.avatar, :transformation => { :width => 200, :crop => "pad" }, :class=>"avatar-original"%>
+<% else %>
+    <%= image_tag "shared/avatar.png", :class=>"avatar-original"%>
+<% end %>
+
 <h2>User : <%= @user.email %></h2>
 <p>Name : <%= @user.first_name %> <%= @user.last_name %></p>
 <!-- TODO: display user profile -->
