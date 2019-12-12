@@ -6,14 +6,5 @@ class User < ApplicationRecord
   has_many :booking
   has_many :apartment
 
-  validates :email, confirmation: true
-  validates :email_confirmation, presence: true
-  validates :first_name, :presence => true
-  validates :last_name, :presence => true
-  validates :date_of_birth, :presence => true
-  validates :gender, :presence => true
-
   mount_uploader :avatar, AvatarUploader
-
-
 end
