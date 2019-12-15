@@ -21,7 +21,7 @@ class UsersController < ApplicationController
 
 	def update_avatar
 		if @user.update(avatar_params)
-		  redirect_to user_path(@user), notice: 'Avatar uploaded.'
+		  redirect_to user_path(@user), notice: 'Avatar uploaded.' #user/show page
 		else
 		  render :edit_avatar, alert: 'Error uploading avatar.'
 		end

@@ -27,7 +27,7 @@ class ApartmentPolicy < ApplicationPolicy
 
     def destroy?
        user_is_owner_or_admin?
-    e nd
+    end
 
 
     private
