@@ -9,14 +9,22 @@ class UsersController < ApplicationController
 	end
 
 	def update_profile
-		# TODO : udpate user profile according to the form input
+		if @user.update(profile_params)
+		  redirect_to user_path(@user), notice: 'Profile updated.'
+		else
+		  render :edit_profile, alert: 'Error updating profile.'
+		end
 	end
 
 	def edit_avatar
 	end
 
 	def update_avatar
-		# TODO : update user avatar according to user input
+		if @user.update(avatar_params)
+		  redirect_to user_path(@user), notice: 'Avatar uploaded.'
+		else
+		  render :edit_avatar, alert: 'Error uploading avatar.'
+		end
 	end
 
 	private
@@ -31,6 +39,6 @@ class UsersController < ApplicationController
 	end
 
 	def avatar_params
-	   params.require(:user).permit(:avatar)
+		params.require(:user).permit(:avatar)
 	end
 end
