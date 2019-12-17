@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
-  resources :apartments
+  resources :apartments do
+    resources :photos, only: [:destroy]
+  end
+  
   devise_for :users
   root to: 'pages#home'
 

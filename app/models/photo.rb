@@ -1,5 +1,4 @@
 class Photo < ApplicationRecord
   belongs_to :apartment
-
-  mount_uploaders :photos, PhotoUploader
+  mount_uploader :img, PhotoUploader
 end

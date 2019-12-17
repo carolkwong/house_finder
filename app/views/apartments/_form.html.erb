@@ -15,14 +15,16 @@
     <%= f.input :bedrooms %>
     <%= f.input :elevator %>
     <%= f.input :furnished %>
-    <%= f.input :photo,
-                          required: true,
-                          multiple: true,
-                          autofocus: true,
-                          input_html: { autocomplete: "Please upload the apartment pictures" }%>
-    <%= f.input :photo_cache, as: :hidden %>
 
+    <%= f.label "Add Photos" %><br>
+    <%= f.file_field :img, :multiple => true, name: "photos[img][]" %>
   </div>
+  <% @apartment.photos.each do |photo| %>
+    <div class="form-inputs my-4">
+      <%= cl_image_tag photo.img, :transformation => { :width => 200, :crop => "pad" } %>
+      <%= link_to 'Destroy', apartment_photo_path(@apartment, photo), method: :delete, data: { confirm: 'Are you sure?' }, class: "ml-2 btn btn-sm btn-danger" %>
+    </div>
+  <% end %>
 
   <div class="form-actions">
     <%= f.button :submit, :class => 'btn btn-primary'%>

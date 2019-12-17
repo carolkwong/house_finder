@@ -36,6 +36,9 @@ class ApartmentsController < ApplicationController
 
     respond_to do |format|
       if @apartment.save
+        params[:photos][:img].each do |a|
+          @photo = @apartment.photos.create!(:img => a)
+        end
         format.html { redirect_to @apartment, notice: 'Apartment was successfully created.' }
         format.json { render :show, status: :created, location: @apartment }
       else
@@ -51,6 +54,9 @@ class ApartmentsController < ApplicationController
     authorize @apartment
     respond_to do |format|
       if @apartment.update(apartment_params)
+        params[:photos][:img].each do |a|
+          @photo = @apartment.photos.create!(:img => a)
+        end
         format.html { redirect_to @apartment, notice: 'Apartment was successfully updated.' }
         format.json { render :show, status: :ok, location: @apartment }
       else
@@ -79,6 +85,6 @@ class ApartmentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def apartment_params
-      params.require(:apartment).permit(:address, :price, :latitude, :longtitude, :district, :description, :size, :year_built, :bedrooms, :elevator, :furnished)
+      params.require(:apartment).permit(:address, :price, :latitude, :longtitude, :district, :description, :size, :year_built, :bedrooms, :elevator, :furnished, photos_attributes: [:img])
     end
 end
