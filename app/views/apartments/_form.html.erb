@@ -15,9 +15,16 @@
     <%= f.input :bedrooms %>
     <%= f.input :elevator %>
     <%= f.input :furnished %>
+    <%= f.input :photo,
+                          required: true,
+                          multiple: true,
+                          autofocus: true,
+                          input_html: { autocomplete: "Please upload the apartment pictures" }%>
+    <%= f.input :photo_cache, as: :hidden %>
+
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit %>
+    <%= f.button :submit, :class => 'btn btn-primary'%>
   </div>
 <% end %>

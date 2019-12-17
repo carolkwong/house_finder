@@ -1,0 +1,7 @@
+
+
+<h2>All photos of Apartment <% @apartment.address %></h2>
+     <% apartment.photos.each do |photo| %>
+       <%= cl_image_tag photo.image.url(:transformation => { :width => 100, :crop => "pad" }, :class=>"photo-original") %>
+     <% end %>
+  <% end %>
