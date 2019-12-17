@@ -40,12 +40,12 @@
         <td><%= apartment.user.email %></td>
         <td><%= link_to 'Show', apartment %></td>
 
-        <% if policy(Apartment).edit? %>
+        <% if policy(apartment).edit? %>
           <td><%= link_to 'Edit', edit_apartment_path(apartment) %></td>
         <% end %>
 
-        <% if policy(Apartment).destroy? %>
-        <td><%= link_to 'Destroy', apartment_path, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% if policy(apartment).destroy? %>
+        <td><%= link_to 'Destroy', apartment_path(apartment), method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <%end%>
 
       </tr>
