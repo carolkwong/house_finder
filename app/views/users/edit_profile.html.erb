@@ -4,7 +4,7 @@
         <%= simple_form_for(@user, :url => update_profile_user_path, html: { class: 'form' }) do |f| %>
 	        <%= f.input :first_name, required: true %>
 	        <%= f.input :last_name, required: true %>
-	        <%= f.input :date_of_birth, as: :date, required: true, label:"Date of Birth" %>
+	        <%= f.input :date_of_birth, as: :date, start_year: Date.today.year - 50, end_year: Date.today.year, required: true, label:"Date of Birth" %>
 	        <%= f.input :gender, required: true, collection:["Male", "Female"] %>
 	        <%= f.input :phone, required: true, label:"Contact Number" %>
 	        <div class="my-4"></div>
