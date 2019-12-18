@@ -9,7 +9,27 @@
     <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
       <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
     <% end %>
-
+    <
+    <%= f.input :first_name,
+                required: true,
+                autofocus: true,
+                input_html: { autocomplete: "First Name" }%>
+    <%= f.input :last_name,
+                required: true,
+                autofocus: true,
+                input_html: { autocomplete: "Last Name" }%>
+    <%= f.input :date_of_birth,
+                required: true,
+                autofocus: true,
+                input_html: { autocomplete: "Date of Birth" }%>
+    <%= f.input :gender,
+                required: true,
+                autofocus: true,
+                input_html: { autocomplete: "Male or Female" }%>
+    <%= f.input :avatar,
+                required: true,
+                autofocus: true,
+                input_html: { autocomplete: "Please upload your profile picture" }%>
     <%= f.input :password,
                 hint: "leave it blank if you don't want to change it",
                 required: false,
@@ -17,6 +37,7 @@
     <%= f.input :password_confirmation,
                 required: false,
                 input_html: { autocomplete: "new-password" } %>
+
     <%= f.input :current_password,
                 hint: "we need your current password to confirm your changes",
                 required: true,
@@ -24,12 +45,14 @@
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit, "Update" %>
+    <%= f.button :submit, "Update", :class => 'btn btn-primary' %>
+    <!-- redirect to user#show page -->
   </div>
 <% end %>
 
 <h3>Cancel my account</h3>
 
 <p>Unhappy? <%= link_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
+
 
 <%= link_to "Back", :back %>

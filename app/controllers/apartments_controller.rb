@@ -4,21 +4,25 @@ class ApartmentsController < ApplicationController
   # GET /apartments
   # GET /apartments.json
   def index
-    @apartments = Apartment.all
+    # @apartments = Apartment.all
+    @apartments = policy_scope(Apartment).order(created_at: :desc)
   end
 
   # GET /apartments/1
   # GET /apartments/1.json
   def show
+    authorize @apartment
   end
 
   # GET /apartments/new
   def new
     @apartment = Apartment.new
+    authorize @apartment
   end
 
   # GET /apartments/1/edit
   def edit
+    authorize @apartment
   end
 
   # POST /apartments
@@ -28,8 +32,13 @@ class ApartmentsController < ApplicationController
     @apartment.status = 'Available'
     @apartment.user = current_user
 
+    authorize @apartment
+
     respond_to do |format|
       if @apartment.save
+        params[:photos][:img].each do |a|
+          @photo = @apartment.photos.create!(:img => a)
+        end
         format.html { redirect_to @apartment, notice: 'Apartment was successfully created.' }
         format.json { render :show, status: :created, location: @apartment }
       else
@@ -42,8 +51,12 @@ class ApartmentsController < ApplicationController
   # PATCH/PUT /apartments/1
   # PATCH/PUT /apartments/1.json
   def update
+    authorize @apartment
     respond_to do |format|
       if @apartment.update(apartment_params)
+        params[:photos][:img].each do |a|
+          @photo = @apartment.photos.create!(:img => a)
+        end
         format.html { redirect_to @apartment, notice: 'Apartment was successfully updated.' }
         format.json { render :show, status: :ok, location: @apartment }
       else
@@ -56,6 +69,7 @@ class ApartmentsController < ApplicationController
   # DELETE /apartments/1
   # DELETE /apartments/1.json
   def destroy
+    authorize @apartment
     @apartment.destroy
     respond_to do |format|
       format.html { redirect_to apartments_url, notice: 'Apartment was successfully destroyed.' }
@@ -71,6 +85,6 @@ class ApartmentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def apartment_params
-      params.require(:apartment).permit(:address, :price, :latitude, :longtitude, :district, :description, :size, :year_built, :bedrooms, :elevator, :furnished)
+      params.require(:apartment).permit(:address, :price, :latitude, :longtitude, :district, :description, :size, :year_built, :bedrooms, :elevator, :furnished, photos_attributes: [:img])
     end
 end

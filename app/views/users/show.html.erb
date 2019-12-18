@@ -1,0 +1,15 @@
+<h1>users#show</h1>
+
+<h2>User : <%= @user.first_name %> <%=@user.last_name %></h2>
+<h2>Date of Birth: <%=@user.date_of_birth %></h2>
+<h2>Email : <%=@user.email %></h2>
+<h2>Gender : <%=@user.gender %></h2>
+
+<h2><% if @user.avatar.present? %>
+    <%= cl_image_tag @user.avatar, :transformation => { :width => 100, :crop => "pad" }, :class=>"avatar-original"%>
+<% else %>
+    <%= image_tag "shared/avatar.png", :class=>"avatar-original"%>
+<% end %></h2>
+
+<%= link_to 'Edit Profile', edit_profile_user_path(@user), class: "btn btn-primary " %>
+<%= link_to 'Edit Avatar', edit_avatar_user_path(@user), class: "btn btn-primary " %>

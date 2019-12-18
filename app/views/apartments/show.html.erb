@@ -65,5 +65,8 @@
   <%= @apartment.user.email %>
 </p>
 
-<%= link_to 'Edit', edit_apartment_path(@apartment) %> |
-<%= link_to 'Back', apartments_path %>
+
+<%= render 'apartment_photos', apartment: @apartment %>
+
+<%= link_to 'Edit', edit_apartment_path(@apartment), :class => 'btn btn-primary' %> |
+<%= link_to 'Back', apartments_path, :class => 'btn btn-primary' %>
