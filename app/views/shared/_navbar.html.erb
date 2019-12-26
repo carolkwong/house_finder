@@ -14,6 +14,14 @@
           <%= link_to "Home", root_path, class: "nav-link" %>
         </li>
         <li class="nav-item active">
+          <%= link_to "Apartments", apartments_path, class: "nav-link" %>
+        </li>
+        <% if policy(Apartment).create? %>
+          <li class="nav-item active">
+            <%= link_to "New Apartment", new_apartment_path, class: "nav-link" %>
+          </li>
+        <% end %>
+        <li class="nav-item active">
           <%= link_to "About", pages_about_path, class: "nav-link" %>
         </li>
         <li class="nav-item active">

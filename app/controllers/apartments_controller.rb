@@ -6,11 +6,17 @@ class ApartmentsController < ApplicationController
   def index
     # @apartments = Apartment.all
     @apartments = policy_scope(Apartment).order(created_at: :desc)
+    
   end
 
   def index_district
     @district = params["district"]
     @apartments = policy_scope(Apartment).where(district: params[:district]).order(created_at: :desc)
+    
+    if @apartments.count == 0
+      @apartments = policy_scope(Apartment).order(created_at: :desc)
+    end
+    
     authorize @apartments
     render :index
   end

@@ -1,61 +1,38 @@
-<p id="notice"><%= notice %></p>
+<div class="apartment_index_page">
+  <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API'] %>"></script>
 
-<h1>Apartments</h1>
-
-<table class="table">
-  <thead>
-    <tr>
-      <th>Status</th>
-      <th>Address</th>
-      <th>Price</th>
-      <th>Latitude</th>
-      <th>Longtitude</th>
-      <th>District</th>
-      <th>Description</th>
-      <th>Size</th>
-      <th>Year built</th>
-      <th>Bedrooms</th>
-      <th>Elevator</th>
-      <th>Furnished</th>
-      <th>User</th>
-      <th># of photos</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
+  <div id="map-data-container" style="display:none">
+    <ul>
     <% @apartments.each do |apartment| %>
-      <tr>
-        <td><%= apartment.status %></td>
-        <td><%= apartment.address %></td>
-        <td><%= apartment.price %></td>
-        <td><%= apartment.latitude %></td>
-        <td><%= apartment.longtitude %></td>
-        <td><%= apartment.district %></td>
-        <td><%= apartment.description %></td>
-        <td><%= apartment.size %></td>
-        <td><%= apartment.year_built %></td>
-        <td><%= apartment.bedrooms %></td>
-        <td><%= apartment.elevator %></td>
-        <td><%= apartment.furnished %></td>
-        <td><%= apartment.user.email %></td>
-        <td><%= apartment.photos.count %></td>
-        <td><%= link_to 'Show', apartment %></td>
-
-        <% if policy(apartment).edit? %>
-          <td><%= link_to 'Edit', edit_apartment_path(apartment) %></td>
-        <% end %>
-
-        <% if policy(apartment).destroy? %>
-        <td><%= link_to 'Destroy', apartment_path(apartment), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <%end%>
-
-      </tr>
+      <% img = image_path("apartment_default.jpg") %>
+      <% if apartment.photos.count > 0 %>
+        <% img = apartment.photos[0].img %>
+      <% end %>
+      <li class="map-data" data-id="<%= apartment[:id]%>" data-address="<%= apartment[:address] %>" data-latitude="<%= apartment[:latitude] %>" data-longtitude="<%= apartment[:longtitude] %>" data-img="<%= img %>"></li>
     <% end %>
-  </tbody>
-</table>
+    </ul>
+  </div>
+  
+  <div class="row">
+    <div class="d-none d-md-block w-50">
+      <div id="map"></div>
+    </div>
+    <div class="apartment-card-container">
+      <% @apartments.each do |apartment| %>
+        <div class="apartment-card">
+          <%= link_to apartment.address, apartment_path(apartment) %>
 
-<br>
-<% if policy(Apartment).create? %>
-  <%= link_to 'New Apartment', new_apartment_path, :class => 'btn btn-primary' %>
-<% end %>
+          <% if policy(apartment).edit? %>
+            <%= link_to "Edit", edit_apartment_path(apartment), class: "ml-1 btn btn-sm btn-primary" %>
+          <% end %>
+
+          <% if policy(apartment).destroy? %>
+            <%= link_to 'Destroy', apartment_path(apartment), method: :delete, data: { confirm: 'Are you sure?' }, class: "ml-1 btn btn-sm btn-danger" %>
+          <% end %>
+
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,25 @@
+$break-xl: 1200px;
+$break-lg: 992px;
+$break-md: 768px;
+$break-sm: 576px;
+
+#map{
+	width: 100%;
+	background-color: #ccc;
+}
+
+.apartment-card-container{
+	width: 100%;
+
+	@media only screen and (min-width: $break-md) {
+		width: 50%;
+    }
+}
+
+.apartment-card{
+	width: calc(100% - 25px);
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	margin: 5px;
+	padding: 20px;
+}
