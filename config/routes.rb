@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
   resources :apartments do
     resources :photos, only: [:destroy]
+
+    collection do
+      get 'district/:district', to: 'apartments#index_district'
+    end
   end
   
   devise_for :users

@@ -29,6 +29,10 @@ class ApartmentPolicy < ApplicationPolicy
        user_is_owner_or_admin?
     end
 
+    def index_district?
+      true
+    end
+
 
     private
       def user_is_owner_or_admin?
