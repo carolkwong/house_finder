@@ -1,72 +1,77 @@
-<p id="notice"><%= notice %></p>
+<div class="container my-4">
+  <div class="row">
+    <div class="col-lg-8 offset-lg-2">
 
-<p>
-  <strong>Status:</strong>
-  <%= @apartment.status %>
-</p>
+      <p>
+        <strong>Status:</strong>
+        <%= @apartment.status %>
+      </p>
 
-<p>
-  <strong>Address:</strong>
-  <%= @apartment.address %>
-</p>
+      <p>
+        <strong>Address:</strong>
+        <%= @apartment.address %>
+      </p>
 
-<p>
-  <strong>Price:</strong>
-  <%= @apartment.price %>
-</p>
+      <p>
+        <strong>Price:</strong>
+        <%= @apartment.price %>
+      </p>
 
-<p>
-  <strong>Latitude:</strong>
-  <%= @apartment.latitude %>
-</p>
+      <p>
+        <strong>Latitude:</strong>
+        <%= @apartment.latitude %>
+      </p>
 
-<p>
-  <strong>Longtitude:</strong>
-  <%= @apartment.longtitude %>
-</p>
+      <p>
+        <strong>Longtitude:</strong>
+        <%= @apartment.longtitude %>
+      </p>
 
-<p>
-  <strong>District:</strong>
-  <%= @apartment.district %>
-</p>
+      <p>
+        <strong>District:</strong>
+        <%= @apartment.district %>
+      </p>
 
-<p>
-  <strong>Description:</strong>
-  <%= @apartment.description %>
-</p>
+      <p>
+        <strong>Description:</strong>
+        <%= @apartment.description %>
+      </p>
 
-<p>
-  <strong>Size:</strong>
-  <%= @apartment.size %>
-</p>
+      <p>
+        <strong>Size:</strong>
+        <%= @apartment.size %>
+      </p>
 
-<p>
-  <strong>Year built:</strong>
-  <%= @apartment.year_built %>
-</p>
+      <p>
+        <strong>Year built:</strong>
+        <%= @apartment.year_built %>
+      </p>
 
-<p>
-  <strong>Bedrooms:</strong>
-  <%= @apartment.bedrooms %>
-</p>
+      <p>
+        <strong>Bedrooms:</strong>
+        <%= @apartment.bedrooms %>
+      </p>
 
-<p>
-  <strong>Elevator:</strong>
-  <%= @apartment.elevator %>
-</p>
+      <p>
+        <strong>Elevator:</strong>
+        <%= @apartment.elevator %>
+      </p>
 
-<p>
-  <strong>Furnished:</strong>
-  <%= @apartment.furnished %>
-</p>
+      <p>
+        <strong>Furnished:</strong>
+        <%= @apartment.furnished %>
+      </p>
 
-<p>
-  <strong>User:</strong>
-  <%= @apartment.user.email %>
-</p>
+      <p>
+        <strong>User:</strong>
+        <%= @apartment.user.email %>
+      </p>
 
 
-<%= render 'apartment_photos', apartment: @apartment %>
+      <%= render 'apartment_photos', apartment: @apartment %>
 
-<%= link_to 'Edit', edit_apartment_path(@apartment), :class => 'btn btn-primary' %> |
-<%= link_to 'Back', apartments_path, :class => 'btn btn-primary' %>
+      <%= link_to 'Edit', edit_apartment_path(@apartment), :class => 'btn btn-primary' %> |
+      <%= link_to 'Back', apartments_path, :class => 'btn btn-primary' %>
+    </div>
+  </div>
+</div>

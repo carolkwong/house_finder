@@ -1,5 +1,5 @@
-<h2>All photos of Apartment <% @apartment.address %></h2>
-<div class="apartment_photo_container">
+<div class="apartment_photo_container my-4">
+	<h2>All photos of Apartment <% @apartment.address %></h2>
 	<% apartment.photos.each do |photo| %>
 		<%= cl_image_tag photo.img.url(:transformation => { :width => 100, :crop => "pad" }, :class=>"photo-original") %>
 	<% end %>
