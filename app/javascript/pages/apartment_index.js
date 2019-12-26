@@ -17,13 +17,11 @@ const initApartmentIndex = () => {
       places.push(place_data);
 
     })
-    console.table(places);
-
-    const hk_center = { lat: 22.3375867, lng: 114.1568359 };
+    const hk_center = { lat: 22.35, lng: 114.12 };
     
     const map = new google.maps.Map(
       document.getElementById('map'), {
-        zoom: 11.5,
+        zoom: 11,
         center: hk_center,
         mapTypeControl: false,
         zoomControl: true,
