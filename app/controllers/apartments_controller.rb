@@ -54,8 +54,10 @@ class ApartmentsController < ApplicationController
     authorize @apartment
     respond_to do |format|
       if @apartment.update(apartment_params)
-        params[:photos][:img].each do |a|
-          @photo = @apartment.photos.create!(:img => a)
+        unless params[:photos].nil?
+          params[:photos][:img].each do |a|
+            @photo = @apartment.photos.create!(:img => a)
+          end
         end
         format.html { redirect_to @apartment, notice: 'Apartment was successfully updated.' }
         format.json { render :show, status: :ok, location: @apartment }

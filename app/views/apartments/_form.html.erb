@@ -8,7 +8,7 @@
     <%= f.input :price %>
     <%= f.input :latitude %>
     <%= f.input :longtitude %>
-    <%= f.input :district %>
+    <%= f.input :district, collection: Apartment::options_for_district %>
     <%= f.input :description %>
     <%= f.input :size %>
     <%= f.input :year_built, collection: (1950..Date.today.year) %>
@@ -27,6 +27,6 @@
   <% end %>
 
   <div class="form-actions">
-    <%= f.button :submit, :class => 'btn btn-primary'%>
+    <%= f.button :submit, :class => 'btn btn-primary my-4'%>
   </div>
 <% end %>
