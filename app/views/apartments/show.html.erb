@@ -1,77 +1,66 @@
-<div class="container my-4">
-  <div class="row">
-    <div class="col-lg-8 offset-lg-2">
-
-      <p>
-        <strong>Status:</strong>
-        <%= @apartment.status %>
-      </p>
-
-      <p>
-        <strong>Address:</strong>
-        <%= @apartment.address %>
-      </p>
-
-      <p>
-        <strong>Price:</strong>
-        <%= @apartment.price %>
-      </p>
-
-      <p>
-        <strong>Latitude:</strong>
-        <%= @apartment.latitude %>
-      </p>
-
-      <p>
-        <strong>Longtitude:</strong>
-        <%= @apartment.longtitude %>
-      </p>
-
-      <p>
-        <strong>District:</strong>
-        <%= @apartment.district %>
-      </p>
-
-      <p>
-        <strong>Description:</strong>
-        <%= @apartment.description %>
-      </p>
-
-      <p>
-        <strong>Size:</strong>
-        <%= @apartment.size %>
-      </p>
-
-      <p>
-        <strong>Year built:</strong>
-        <%= @apartment.year_built %>
-      </p>
-
-      <p>
-        <strong>Bedrooms:</strong>
-        <%= @apartment.bedrooms %>
-      </p>
-
-      <p>
-        <strong>Elevator:</strong>
-        <%= @apartment.elevator %>
-      </p>
-
-      <p>
-        <strong>Furnished:</strong>
-        <%= @apartment.furnished %>
-      </p>
-
-      <p>
-        <strong>User:</strong>
-        <%= @apartment.user.email %>
-      </p>
-
-
-      <%= render 'apartment_photos', apartment: @apartment %>
-
-      <%= link_to 'Edit', edit_apartment_path(@apartment), :class => 'btn btn-primary' %> |
-      <%= link_to 'Back', apartments_path, :class => 'btn btn-primary' %>
+<div class="apartment_show_page">
+    <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API'] %>"></script>
+    <div class="container my-4">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2">
+                <div id="map-data-container" style="display:none">
+                    <ul>
+                        <% img = image_path("shared/apartment_default.jpg") %>
+                        <% if @apartment.photos.count > 0 %>
+                        <% img = cl_image_path(@apartment.photos[0].img, :transformation => { :width => 200, :height=> 200, :crop => "fill" }) %>
+                        <% end %>
+                        <li class="map-data" data-id="<%= @apartment[:id]%>" data-address="<%= @apartment[:address] %>" data-latitude="<%= @apartment[:latitude] %>" data-longtitude="<%= @apartment[:longtitude] %>" data-img="<%= img %>"></li>
+                    </ul>
+                </div>
+                <div id="map"></div>
+                <p>
+                    <strong>Status:</strong>
+                    <%= @apartment.status %>
+                </p>
+                <p>
+                    <strong>Address:</strong>
+                    <%= @apartment.address %>
+                </p>
+                <p>
+                    <strong>Price:</strong>
+                    <%= @apartment.price %>
+                </p>
+                <p>
+                    <strong>District:</strong>
+                    <%= @apartment.district %>
+                </p>
+                <p>
+                    <strong>Description:</strong>
+                    <%= @apartment.description %>
+                </p>
+                <p>
+                    <strong>Size:</strong>
+                    <%= @apartment.size %>
+                </p>
+                <p>
+                    <strong>Year built:</strong>
+                    <%= @apartment.year_built %>
+                </p>
+                <p>
+                    <strong>Bedrooms:</strong>
+                    <%= @apartment.bedrooms %>
+                </p>
+                <p>
+                    <strong>Elevator:</strong>
+                    <%= @apartment.elevator %>
+                </p>
+                <p>
+                    <strong>Furnished:</strong>
+                    <%= @apartment.furnished %>
+                </p>
+                <p>
+                    <strong>User:</strong>
+                    <%= @apartment.user.email %>
+                </p>
+                <%= render 'apartment_photos', apartment: @apartment %>
+                <%= link_to 'Edit', edit_apartment_path(@apartment), :class => 'btn btn-primary' %> |
+                <%= link_to 'Back', apartments_path, :class => 'btn btn-primary' %>
+            </div>
+        </div>
     </div>
-  </div>
 </div>

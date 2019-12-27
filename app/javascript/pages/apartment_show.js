@@ -1,11 +1,9 @@
-const initApartmentIndex = () => {
+const initApartmentShow = () => {
 
-  if ($(".apartment_index_page").length) {
-    $('#map').css({ height: window.innerHeight - 66 });
+  if ($(".apartment_show_page").length) {
 
-
-    //get map data rendered in apartments#index
     let places = [];
+
     const map_data = document.querySelectorAll("li.map-data");
     map_data.forEach( function(data) {
       const place_data = {
@@ -16,10 +14,8 @@ const initApartmentIndex = () => {
         img: data.dataset.img,
       }
       places.push(place_data);
+
     })
-
-
-    //display google map
     const hk_center = { lat: 22.35, lng: 114.12 };
     
     const map = new google.maps.Map(
@@ -35,8 +31,8 @@ const initApartmentIndex = () => {
         streetViewControl: false,
       });
 
-    //infoWindow to display upon clicking a marker
     const infoWindow = new google.maps.InfoWindow();
+
 
     for (let i = 0; i < places.length; i++) {
 
@@ -51,9 +47,10 @@ const initApartmentIndex = () => {
 
       });
 
+      //same infowindow as index version, except removed the <a> part
       (function (marker, data) {
           google.maps.event.addListener(marker, "click", function (e) {
-              infoWindow.setContent("<div  class='apartment-marker'><a href='../../apartments/" + data.id+ "'><img src='"+ data.img + "'><div class='apartment-marker-text'>"+data.address+"</div></a></div>");
+              infoWindow.setContent("<div  class='apartment-marker'><img src='"+ data.img + "'><div class='apartment-marker-text'>"+data.address+"</div></div>");
               infoWindow.open(map, marker);
           });
       })(marker, data);
@@ -62,4 +59,4 @@ const initApartmentIndex = () => {
   }
 
 }
-export { initApartmentIndex };
+export { initApartmentShow };

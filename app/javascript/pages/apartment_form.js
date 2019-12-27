@@ -1,7 +1,6 @@
 const initApartmentForm = () => {
 
     if ($(".apartment_form").length) {
-        $('#map').css({ height: 500 });
 
         let places = [];
 
