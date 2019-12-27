@@ -10,7 +10,7 @@ class ApartmentPolicy < ApplicationPolicy
     end
 
     def create?
-      return true
+      true
     end
 
     def show?
@@ -29,6 +29,10 @@ class ApartmentPolicy < ApplicationPolicy
        user_is_owner_or_admin?
     end
 
+    def index?
+      true
+    end
+
     def index_district?
       true
     end
@@ -36,7 +40,7 @@ class ApartmentPolicy < ApplicationPolicy
 
     private
       def user_is_owner_or_admin?
-      record.user == user || user.admin
+      record.user == user || (user && user.admin)
       end
 
 end

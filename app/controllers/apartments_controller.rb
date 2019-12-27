@@ -1,12 +1,13 @@
 class ApartmentsController < ApplicationController
   before_action :set_apartment, only: [:show, :edit, :update, :destroy]
+  skip_before_action :authenticate_user!, only: [:index, :index_district]
 
   # GET /apartments
   # GET /apartments.json
   def index
     # @apartments = Apartment.all
     @apartments = policy_scope(Apartment).order(created_at: :desc)
-    
+    authorize :apartment, :index?
   end
 
   def index_district
@@ -17,7 +18,7 @@ class ApartmentsController < ApplicationController
       @apartments = policy_scope(Apartment).order(created_at: :desc)
     end
     
-    authorize @apartments
+    authorize :apartment, :index_district?
     render :index
   end
 
