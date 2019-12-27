@@ -50,7 +50,7 @@ const initApartmentIndex = () => {
 
       (function (marker, data) {
           google.maps.event.addListener(marker, "click", function (e) {
-              infoWindow.setContent("<div  class='place-link-text'><a href='../../apartments/" + data.id+ "'><img src='"+ data.img + "' style='width:200px; height:150px; object-fit:contain;'><div class='text-container'>"+data.address+"</div></a></div>");
+              infoWindow.setContent("<div  class='apartment-marker'><a href='../../apartments/" + data.id+ "'><img src='"+ data.img + "'><div class='apartment-marker-text'>"+data.address+"</div></a></div>");
               infoWindow.open(map, marker);
           });
       })(marker, data);
