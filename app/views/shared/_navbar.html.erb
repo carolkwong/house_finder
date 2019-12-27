@@ -1,4 +1,4 @@
-<div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
+<div class="navbar navbar-expand-sm navbar-light navbar-house-finder">
   <%= link_to root_path, class: "navbar-brand" do %>
     <%= image_tag "https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/logo.png" %>
     <% end %>
@@ -14,11 +14,11 @@
           <%= link_to "Home", root_path, class: "nav-link" %>
         </li>
         <li class="nav-item active">
-          <%= link_to "Apartments", apartments_path, class: "nav-link" %>
+          <%= link_to "View Apartments", apartments_path, class: "nav-link" %>
         </li>
         <% if policy(Apartment).create? %>
           <li class="nav-item active">
-            <%= link_to "New Apartment", new_apartment_path, class: "nav-link" %>
+            <%= link_to "Add new Apartment", new_apartment_path, class: "nav-link" %>
           </li>
         <% end %>
         <li class="nav-item active">
