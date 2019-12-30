@@ -1,2 +1,46 @@
-<h1>Bookings#index</h1>
-<p>Find me in app/views/bookings/index.html.erb</p>
+<!-- ADJUST TO BOOKING INDEX, USE APARTMENT #INDEX AS BASE -->
+
+<p id="notice"><%= notice %></p>
+
+<h1>Bookings</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Apartment Address</th>
+      <th>Booked Date</th>
+      <th>Booked Time</th>
+      <th>Meeting Location</th>
+      <th>Message</th>
+
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @bookings.each do |booking| %>
+      <tr>
+        <td><%= booking.apartment.address %></td>
+        <td><%= booking.book_date %></td>
+        <td><%= booking.book_time %></td>
+        <td><%= booking.location %></td>
+        <td><%= booking.content %></td>
+
+
+        <% if policy(booking).edit? %>
+          <td><%= link_to 'Edit', edit_booking_path(booking) %></td>
+        <% end %>
+
+        <% if policy(booking).destroy? %>
+        <td><%= link_to 'Destroy', booking_path(booking), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <%end%>
+
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+<% if policy(Booking).create? %>
+  <%= link_to 'New Booking', new_booking_path, :class => 'btn btn-primary' %>
+<% end %>

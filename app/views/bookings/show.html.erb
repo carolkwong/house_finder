@@ -1,2 +1,37 @@
-<h1>Bookings#show</h1>
-<p>Find me in app/views/bookings/show.html.erb</p>
+
+
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Apartment Address</strong>
+  <%= @booking.apartment_id.address %> <!-- [HOW TO RECAP APT DETAILS IN APT MODEL?] -->
+</p>
+
+<p>
+  <strong>Date of Booking</strong>
+  <%= @booking.book_date %>
+</p>
+
+<p>
+  <strong>Time of Booking</strong>
+  <%= @booking.book_time %>
+</p>
+
+<p>
+  <strong>Meeting Location</strong>
+  <%= @booking.location %>
+</p>
+
+<p>
+  <strong>Message</strong>
+  <%= @booking.content %>
+</p>
+
+  <strong>User:</strong>
+  <%= @booking.user.email %>
+</p>
+
+
+<%= link_to 'Edit', bookings_edit_path(@booking), :class => 'btn btn-primary' %> |
+<%= link_to 'Back', bookings_index_path, :class => 'btn btn-primary' %>
+
