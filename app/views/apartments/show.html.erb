@@ -60,6 +60,8 @@
                 <%= render 'apartment_photos', apartment: @apartment %>
                 <%= link_to 'Edit', edit_apartment_path(@apartment), :class => 'btn btn-primary' %> |
                 <%= link_to 'Back', apartments_path, :class => 'btn btn-primary' %>
+
+                <%= link_to 'Create Booking to View', bookings_new_path(@apartment), class: "btn btn-primary " %>
             </div>
         </div>
     </div>

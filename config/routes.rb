@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'bookings/index'
+  get 'bookings/new'
+  get 'bookings/edit'
+  get 'bookings/show'
   resources :apartments do
     resources :photos, only: [:destroy]
 
