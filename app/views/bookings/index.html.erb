@@ -42,5 +42,5 @@
 
 <br>
 <% if policy(Booking).create? %>
-  <%= link_to 'New Booking', new_booking_path, :class => 'btn btn-primary' %>
+  <%#= link_to 'New Booking', new_booking_path, :class => 'btn btn-primary' %> <!-- this requires another form to select apartment (admin use?) -->
 <% end %>

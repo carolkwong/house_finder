@@ -1,14 +1,18 @@
 Rails.application.routes.draw do
-  get 'bookings/index'
-  get 'bookings/new'
-  get 'bookings/edit'
-  get 'bookings/show'
+
+  resources :bookings, except: [:new] #remove new from bookings
+
   resources :apartments do
     resources :photos, only: [:destroy]
 
     collection do
       get 'district/:district', to: 'apartments#index_district'
     end
+
+    member do
+      resources :bookings, only: [:new] #add bookings new under apartments
+    end
+
   end
   
   devise_for :users
