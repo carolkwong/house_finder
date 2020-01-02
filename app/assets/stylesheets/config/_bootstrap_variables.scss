@@ -11,7 +11,7 @@ $font-size-base: 1rem;
 
 // Colors
 $body-color: $gray;
-$primary:    $blue;
+$primary:    $brand-color-foreground;
 $success:    $green;
 $info:       $yellow;
 $danger:     $red;
@@ -19,7 +19,7 @@ $warning:    $orange;
 
 // Buttons & inputs' radius
 $border-radius:    2px;
-$border-radius-lg: 2px;
-$border-radius-sm: 2px;
+$border-radius-lg: 8px;
+$border-radius-sm: 4px;
 
 // Override other variables below!

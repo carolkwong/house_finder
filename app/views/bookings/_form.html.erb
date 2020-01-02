@@ -1,31 +1,16 @@
 <!-- TO ADJUST TO BOOKING FORM -->
 
-<%= simple_form_for(@apartment) do |f| %>
+<%= simple_form_for(@booking) do |f| %>
   <%= f.error_notification %>
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
   <div class="form-inputs">
-    <%= f.input :address %>
-    <%= f.input :price %>
-    <%= f.input :latitude %>
-    <%= f.input :longtitude %>
-    <%= f.input :district %>
-    <%= f.input :description %>
-    <%= f.input :size %>
-    <%= f.input :year_built, collection: (1950..Date.today.year) %>
-    <%= f.input :bedrooms %>
-    <%= f.input :elevator %>
-    <%= f.input :furnished %>
-
-    <%= f.label "Add Photos" %><br>
-    <%= f.file_field :img, :multiple => true, name: "photos[img][]" %>
+    <%= f.input :book_date %>
+    <%= f.input :book_time %>
+    <%= f.input :location, label: "Meet up location" %>
+    <%= f.input :content, label: "Leave a message to owner" %>
+    <%= f.input :apartment_id, as: :hidden %> <!-- hide the selected apartment -->
   </div>
-  <% @apartment.photos.each do |photo| %>
-    <div class="form-inputs my-4">
-      <%= cl_image_tag photo.img, :transformation => { :width => 200, :crop => "pad" } %>
-      <%= link_to 'Destroy', apartment_photo_path(@apartment, photo), method: :delete, data: { confirm: 'Are you sure?' }, class: "ml-2 btn btn-sm btn-danger" %>
-    </div>
-  <% end %>
 
   <div class="form-actions">
     <%= f.button :submit, :class => 'btn btn-primary'%>
