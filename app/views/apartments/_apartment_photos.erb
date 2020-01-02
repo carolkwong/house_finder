@@ -3,6 +3,6 @@
         <% @apartment.address %>
     </h2>
     <% apartment.photos.each do |photo| %>
-    <%= cl_image_tag photo.img, :transformation => { :width => 100, :height => 100, :crop => "fill" }, :class => "photo-original" %>
+    <%= cl_image_tag photo.img, :cloud_name => "preface", :transformation => { :width => 100, :height => 100, :crop => "fill" }, :class => "photo-original" %>
     <% end %>
 </div>
