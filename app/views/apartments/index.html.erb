@@ -6,7 +6,7 @@
     <% @apartments.each do |apartment| %>
       <% img = image_path("shared/apartment_default.jpg") %>
       <% if apartment.photos.count > 0 %>
-        <% img = cl_image_path(apartment.photos[0].img, :transformation => { :width => 200, :height=> 200, :crop => "fill" }) %>
+        <% img = cl_image_path(apartment.photos[0].img, :cloud_name => "preface", :transformation => { :width => 200, :height=> 200, :crop => "fill" }) %>
       <% end %>
       <li class="map-data" data-id="<%= apartment[:id]%>" data-address="<%= apartment[:address] %>" data-latitude="<%= apartment[:latitude] %>" data-longtitude="<%= apartment[:longtitude] %>" data-img="<%= img %>"></li>
     <% end %>
