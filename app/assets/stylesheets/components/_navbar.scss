@@ -1,12 +1,22 @@
-.navbar-lewagon {
+.navbar-house-finder {
   justify-content: space-between;
-  background: white;
+  background-color: $brand-color-background;
+
+  // override original padding from bootstrap
+  .nav-link{
+  	color: $brand-color-foreground !important;
+  	padding: 8px 12px !important;
+  }
 }
 
-.navbar-lewagon .navbar-collapse {
+.navbar-house-finder .navbar-collapse {
   flex-grow: 0;
 }
 
-.navbar-lewagon .navbar-brand img {
+.navbar-house-finder .navbar-brand img {
   width: 40px;
+}
+
+.navbar-brand{
+  color: $brand-color-foreground !important;
 }

@@ -1,37 +1,35 @@
-
-
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Apartment Address</strong>
-  <%= @booking.apartment_id.address %> <!-- [HOW TO RECAP APT DETAILS IN APT MODEL?] -->
-</p>
-
-<p>
-  <strong>Date of Booking</strong>
-  <%= @booking.book_date %>
-</p>
-
-<p>
-  <strong>Time of Booking</strong>
-  <%= @booking.book_time %>
-</p>
-
-<p>
-  <strong>Meeting Location</strong>
-  <%= @booking.location %>
-</p>
-
-<p>
-  <strong>Message</strong>
-  <%= @booking.content %>
-</p>
-
-  <strong>User:</strong>
-  <%= @booking.user.email %>
-</p>
-
-
-<%= link_to 'Edit', bookings_edit_path(@booking), :class => 'btn btn-primary' %> |
-<%= link_to 'Back', bookings_index_path, :class => 'btn btn-primary' %>
-
+<div class="container my-4">
+    <div class="row">
+        <div class="col-lg-8 offset-lg-2">
+            <p id="notice">
+                <%= notice %>
+            </p>
+            <p>
+                <strong>Apartment Address</strong>
+                <%= @booking.apartment.address %>
+                <!-- [HOW TO RECAP APT DETAILS IN APT MODEL?] -->
+            </p>
+            <p>
+                <strong>Date of Booking</strong>
+                <%= @booking.book_date %>
+            </p>
+            <p>
+                <strong>Time of Booking</strong>
+                <%= @booking.book_time.strftime("%H:%M") %>
+            </p>
+            <p>
+                <strong>Meeting Location</strong>
+                <%= @booking.location %>
+            </p>
+            <p>
+                <strong>Message</strong>
+                <%= @booking.content %>
+            </p>
+            <strong>User:</strong>
+            <%= @booking.user.email %>
+            </p>
+            <%= link_to 'Edit', edit_booking_path(@booking), :class => 'btn btn-primary' %> |
+            <%= link_to 'Back', bookings_path, :class => 'btn btn-primary' %>
+        </div>
+    </div>
+</div>

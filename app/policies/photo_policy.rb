@@ -12,7 +12,7 @@ class PhotoPolicy < ApplicationPolicy
 
     private
         def user_is_owner_or_admin?
-      		record.apartment.user == user || user.admin
+      		record.apartment.user == user || (user && user.admin)
       	end
 
 end
