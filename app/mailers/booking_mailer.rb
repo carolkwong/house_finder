@@ -9,6 +9,6 @@ class BookingMailer < ApplicationMailer
     @booking = params[:booking]
     @greeting = "Hi"
 
-    mail (to: @booking.user.email, subject: "Your booking is confirmed")
+    mail (to: @booking.user.email, subject: 'Your booking is confirmed')
   end
 end

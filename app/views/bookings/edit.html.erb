@@ -1,2 +1,13 @@
-<h1>Bookings#edit</h1>
-<p>Find me in app/views/bookings/edit.html.erb</p>
+
+<div class="container my-4">
+  <div class="row">
+    <div class="col-lg-8 offset-lg-2">
+      <h1>Editing Booking</h1>
+
+      <%= render 'form', booking: @booking %>
+
+      <%= link_to 'Show', @booking, :class => 'btn btn-primary'  %>
+      <%= link_to 'Back', bookings_path, :class => 'btn btn-primary' %>
+    </div>
+  </div>
+</div>
