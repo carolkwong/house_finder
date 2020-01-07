@@ -9,7 +9,8 @@
                 <th>Booked Time</th>
                 <th>Meeting Location</th>
                 <th>Message</th>
-                <th colspan="3"></th>
+                <th>Viewing Fee</th>
+              <th colspan="3"></th>
             </tr>
         </thead>
         <tbody>
@@ -30,6 +31,11 @@
                 <td>
                     <%= booking.content %>
                 </td>
+                <td>
+                    <%= humanized_money_with_symbol(booking.price) %>
+                </td>
+
+
                 <% if policy(booking).show? %>
                 <td>
                     <%= link_to 'Show', booking_path(booking) %>

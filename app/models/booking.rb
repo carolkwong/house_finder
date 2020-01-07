@@ -4,7 +4,7 @@ class Booking < ApplicationRecord
 
   after_create :send_confirm_email
 
-
+  monetize :price_cents
 
   private
   def send_confirm_email

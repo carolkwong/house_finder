@@ -1,9 +1,16 @@
 class BookingPolicy < ApplicationPolicy
+
+
   class Scope < Scope
     def resolve
+      if user.admin
       scope.all
+      else
+      scope.joins(:apartment).where('apartments.user_id = ? OR bookings.user_id = ?', user.id, user.id)
+      end
     end
   end
+
 
     def new?
       true
