@@ -22,6 +22,7 @@ gem 'carrierwave', '~> 1.2'
 gem 'letter_opener', group: :development
 
 gem 'money-rails'
+gem 'stripe'
 
 group :development do
   gem 'web-console', '>= 3.3.0'

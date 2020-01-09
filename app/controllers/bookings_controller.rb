@@ -20,6 +20,7 @@ class BookingsController < ApplicationController
     @apartment = Apartment.find(params[:id])
 
     @booking = Booking.new
+
     @booking.apartment = @apartment
     authorize @booking
   end
@@ -34,14 +35,18 @@ class BookingsController < ApplicationController
   def create
 
     @booking = Booking.new(booking_params)
+    @booking.state = "pending"
     @booking.user = current_user
+    @booking.update(price:100)
 
     authorize @booking
 
     respond_to do |format|
       if @booking.save
-        format.html { redirect_to @booking, notice: 'Booking was successfully created.' }
-        format.json { render :show, status: :created, location: @booking }
+        # format.html { redirect_to @booking, notice: 'Booking was successfully created.' }
+        format.html { redirect_to new_booking_payment_path(@booking), notice: 'Redirecting to payment processing.' }
+        # format.json { render :show, status: :created, location: @booking }
+        format.json { render :show, status: :pending, location: new_booking_payment_path(@booking) }
       else
         format.html { render :new }
         format.json { render json: @booking.errors, status: :unprocessable_entity }
@@ -88,6 +93,6 @@ class BookingsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def booking_params
-      params.require(:booking).permit(:book_date, :book_time, :content, :location, :user_id, :apartment_id)
+      params.require(:booking).permit(:book_date, :state, :book_time, :content, :location, :user_id, :apartment_id)
     end
 end
