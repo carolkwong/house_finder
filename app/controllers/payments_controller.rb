@@ -10,16 +10,19 @@ end
 def create
 
   @booking = current_user.booking.where(state:'pending').find(params[:booking_id])
-  user = Stripe::User.create(
+  authorize @booking
+
+  user = Stripe::Customer.create(
     source:params[:stripeToken],
     email: params[:stripeEmail]
     )
 
+
   charge = Stripe::Charge.create(
-    user: user.id,
+    customer: user.id
     amount: @booking.price_cents,
     description: "Payment of Apartment viewing fee",
-    currency: @booking.price_currency
+    currency: @booking.price.currency
     )
 
 

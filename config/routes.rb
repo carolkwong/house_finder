@@ -1,8 +1,7 @@
 Rails.application.routes.draw do
 
-  resources :bookings, except: [:new] #remove new from bookings
+  resources :bookings, except: [:new] do #remove new from bookings
     #added these 2 lines for payments - not sure right or wrong
-    resources :bookings, only: [:show, :create] do |variable|
       resources :payments, only: [:new, :create]
     end
 

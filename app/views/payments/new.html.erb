@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row py-4">
 
-    <%= form_tag new_booking_payment_path(@booking) do %>
+    <%= form_tag booking_payments_path(@booking) do %>
     <h1>Payment Summary</h1>
 
     <p>Payment of <%=humanized_money_with_symbol@booking.price %></p>
