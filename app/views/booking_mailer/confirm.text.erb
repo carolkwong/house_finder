@@ -1,0 +1,17 @@
+  <%= @greeting%> <%=@booking.user.email%>,
+
+  Your booking has been confirmed as below:
+
+        Apartment Address
+                <%= @booking.apartment.address %>
+                <!-- [HOW TO RECAP APT DETAILS IN APT MODEL?] -->
+        Date of Booking
+                <%= @booking.book_date %>
+        Time of Booking
+                <%= @booking.book_time.strftime("%H:%M") %>
+        Meeting Location
+                <%= @booking.location %>
+        Message
+                <%= @booking.content %>
+
+

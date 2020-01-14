@@ -28,6 +28,11 @@
             <strong>User:</strong>
             <%= @booking.user.email %>
             </p>
+            <p>
+            <strong>Viewing Fee</strong>
+                <%= humanized_money_with_symbol(@booking.price) %>
+            </p>
+
             <%= link_to 'Edit', edit_booking_path(@booking), :class => 'btn btn-primary' %> |
             <%= link_to 'Back', bookings_path, :class => 'btn btn-primary' %>
         </div>
