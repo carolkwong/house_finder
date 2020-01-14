@@ -1,6 +1,6 @@
 class Apartment < ApplicationRecord
   has_many :photos
-  has_many :booking
+  has_many :bookings
   belongs_to :user
 
   def self.options_for_district

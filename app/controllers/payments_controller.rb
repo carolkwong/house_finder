@@ -19,7 +19,7 @@ def create
 
 
   charge = Stripe::Charge.create(
-    customer: user.id
+    customer: user.id,
     amount: @booking.price_cents,
     description: "Payment of Apartment viewing fee",
     currency: @booking.price.currency
