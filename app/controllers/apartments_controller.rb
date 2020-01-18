@@ -2,10 +2,7 @@ class ApartmentsController < ApplicationController
   before_action :set_apartment, only: [:show, :edit, :update, :destroy]
   skip_before_action :authenticate_user!, only: [:index, :index_district]
 
-  # GET /apartments
-  # GET /apartments.json
   def index
-    # @apartments = Apartment.all
     @apartments = policy_scope(Apartment).order(created_at: :desc)
     authorize :apartment, :index?
   end
@@ -22,25 +19,19 @@ class ApartmentsController < ApplicationController
     render :index
   end
 
-  # GET /apartments/1
-  # GET /apartments/1.json
   def show
     authorize @apartment
   end
 
-  # GET /apartments/new
   def new
     @apartment = Apartment.new
     authorize @apartment
   end
 
-  # GET /apartments/1/edit
   def edit
     authorize @apartment
   end
 
-  # POST /apartments
-  # POST /apartments.json
   def create
     @apartment = Apartment.new(apartment_params)
     @apartment.status = 'Available'
@@ -48,51 +39,38 @@ class ApartmentsController < ApplicationController
 
     authorize @apartment
 
-    respond_to do |format|
-      if @apartment.save
-        unless params[:photos].nil?
-          params[:photos][:img].each do |a|
-            @photo = @apartment.photos.create!(:img => a)
-          end
+    if @apartment.save
+      unless params[:photos].nil?
+        params[:photos][:img].each do |a|
+          @photo = @apartment.photos.create!(:img => a)
         end
-        format.html { redirect_to @apartment, notice: 'Apartment was successfully created.' }
-        format.json { render :show, status: :created, location: @apartment }
-      else
-        format.html { render :new }
-        format.json { render json: @apartment.errors, status: :unprocessable_entity }
       end
+      redirect_to @apartment, notice: 'Apartment was successfully created.'
+    else
+      render :new, alert: 'Error on creating apartment.'
     end
   end
 
-  # PATCH/PUT /apartments/1
-  # PATCH/PUT /apartments/1.json
   def update
     authorize @apartment
-    respond_to do |format|
-      if @apartment.update(apartment_params)
-        unless params[:photos].nil?
-          params[:photos][:img].each do |a|
-            @photo = @apartment.photos.create!(:img => a)
-          end
+
+    if @apartment.update(apartment_params)
+      unless params[:photos].nil?
+        params[:photos][:img].each do |a|
+          @photo = @apartment.photos.create!(:img => a)
         end
-        format.html { redirect_to @apartment, notice: 'Apartment was successfully updated.' }
-        format.json { render :show, status: :ok, location: @apartment }
-      else
-        format.html { render :edit }
-        format.json { render json: @apartment.errors, status: :unprocessable_entity }
       end
+      redirect_to @apartment, notice: 'Apartment was successfully updated.'
+    else
+      render :edit, alert: 'Error on updating apartment.'
     end
   end
 
-  # DELETE /apartments/1
-  # DELETE /apartments/1.json
   def destroy
     authorize @apartment
     @apartment.destroy
-    respond_to do |format|
-      format.html { redirect_to apartments_url, notice: 'Apartment was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    
+    redirect_to apartments_url, notice: 'Apartment was successfully destroyed.'
   end
 
   private
