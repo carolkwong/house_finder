@@ -62,6 +62,8 @@ class BookingsController < ApplicationController
       if @booking.update(booking_params)
         format.html { redirect_to @booking, notice: 'Booking was successfully updated.' }
         format.json { render :show, status: :ok, location: @booking }
+
+        send_amendment_email(@booking)
       else
         format.html { render :edit }
         format.json { render json: @booking.errors, status: :unprocessable_entity }
@@ -94,5 +96,10 @@ class BookingsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def booking_params
       params.require(:booking).permit(:book_date, :state, :book_time, :content, :location, :user_id, :apartment_id)
+    end
+
+    def send_amendment_email(booking)
+      BookingMailer.with(booking_id: booking.id).amendment_host.deliver_later
+      BookingMailer.with(booking_id: booking.id).amendment_user.deliver_later
     end
 end

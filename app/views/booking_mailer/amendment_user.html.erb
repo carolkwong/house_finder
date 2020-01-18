@@ -1,0 +1,25 @@
+<h1>Booking Confirmation</h1>
+<p>
+    <%= @greeting%>
+    <%=@booking.user.email%>,
+    Your booking has been changed as below:
+    <strong>Apartment Address</strong>
+    <%= @booking.apartment.address %>
+</p>
+<p>
+    <strong>Date of Booking</strong>
+    <%= @booking.book_date %>
+</p>
+<p>
+    <strong>Time of Booking</strong>
+    <%= @booking.book_time.strftime("%H:%M") %>
+</p>
+<p>
+    <strong>Meeting Location</strong>
+    <%= @booking.location %>
+</p>
+<p>
+    <strong>Message</strong>
+    <%= @booking.content %>
+</p>
+</p>
