@@ -1,8 +1,9 @@
 <h1>Booking Confirmation</h1>
+<p>Hello <%= @name %>,</p>
 <p>
-    <%= @greeting%>
-    <%=@booking.apartment.user.email%>,
     A booking on your apartment has been confirmed as below:
+</p>
+<p>
     <strong>Apartment Address</strong>
     <%= @booking.apartment.address %>
 </p>
@@ -22,4 +23,11 @@
     <strong>Message</strong>
     <%= @booking.content %>
 </p>
+<p>
+    <strong>Booking User:</strong><br>
+    <span>Name: <%= @user.full_name %></span><br>
+    <span>Phone: <%= @user.phone %></span>
+</p>
+<p>
+    <%= link_to "View details", booking_url(@booking) %>
 </p>

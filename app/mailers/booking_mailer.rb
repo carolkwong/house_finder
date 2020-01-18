@@ -7,28 +7,36 @@ class BookingMailer < ApplicationMailer
   #
   def confirm_user
     @booking = Booking.find(params[:booking_id])
-    @greeting = "Hi"
+    @name = @booking.user.full_name
+
+    @host = @booking.apartment.user
 
     mail(to: @booking.user.email, subject: 'Your booking is confirmed')
   end
 
   def confirm_host
     @booking = Booking.find(params[:booking_id])
-    @greeting = "Hi"
+    @name = @booking.apartment.user.full_name
+
+    @user = @booking.user
 
     mail(to: @booking.apartment.user.email, subject: 'A booking is confirmed on your apartment')
   end
 
   def amendment_user
     @booking = Booking.find(params[:booking_id])
-    @greeting = "Hi"
+    @name = @booking.user.full_name
+
+    @host = @booking.apartment.user
 
     mail(to: @booking.user.email, subject: 'Your booking has an amendment')
   end
 
   def amendment_host
     @booking = Booking.find(params[:booking_id])
-    @greeting = "Hi"
+    @name = @booking.apartment.user.full_name
+
+    @user = @booking.user
 
     mail(to: @booking.apartment.user.email, subject: 'A booking on your apartment has an amendment')
   end

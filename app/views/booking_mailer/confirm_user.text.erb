@@ -1,16 +1,25 @@
-  <%= @greeting%> <%=@booking.user.email%>,
+Booking Confirmation
+Hello <%= @name %>,
 
-  Your booking has been confirmed as below:
+Your booking has been confirmed as below:
 
-        Apartment Address
-                <%= @booking.apartment.address %>
-        Date of Booking
-                <%= @booking.book_date %>
-        Time of Booking
-                <%= @booking.book_time.strftime("%H:%M") %>
-        Meeting Location
-                <%= @booking.location %>
-        Message
-                <%= @booking.content %>
+Apartment Address
+<%= @booking.apartment.address %>
 
+Date of Booking
+<%= @booking.book_date %>
 
+Time of Booking
+<%= @booking.book_time.strftime("%H:%M") %>
+
+Meeting Location
+<%= @booking.location %>
+
+Message
+<%= @booking.content %>
+
+Apartment Host
+Name: <%= @host.full_name %>
+Phone: <%= @host.phone %>
+
+View details : <%= booking_url(@booking) %>
