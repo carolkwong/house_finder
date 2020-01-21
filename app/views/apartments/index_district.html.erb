@@ -30,12 +30,6 @@
             <%= link_to 'Destroy', apartment_path(apartment), method: :delete, data: { confirm: 'Are you sure?' }, class: "ml-1 btn btn-sm btn-danger" %>
           <% end %>
 
-          <% if policy(apartment).sold? && apartment.status != "Sold" %>
-            <%= link_to 'Sold', sold_apartment_path(apartment), class: "ml-1 btn btn-sm btn-success" %>
-          <% end %>
-
-
-
         </div>
       <% end %>
     </div>

@@ -1,5 +1,5 @@
 class ApartmentsController < ApplicationController
-  before_action :set_apartment, only: [:show, :edit, :update, :destroy]
+  before_action :set_apartment, only: [:show, :edit, :update, :destroy, :sold]
   skip_before_action :authenticate_user!, only: [:index, :index_district]
 
   def index
@@ -43,6 +43,7 @@ class ApartmentsController < ApplicationController
       unless params[:photos].nil?
         params[:photos][:img].each do |a|
           @photo = @apartment.photos.create!(:img => a)
+          # @photo = Photo.create(apartment: @apartment, img: a)
         end
       end
       redirect_to @apartment, notice: 'Apartment was successfully created.'
@@ -73,6 +74,13 @@ class ApartmentsController < ApplicationController
     redirect_to apartments_url, notice: 'Apartment was successfully destroyed.'
   end
 
+  def sold
+    authorize @apartment
+
+    @apartment.update(status: "Sold")
+    redirect_to @apartment, notice: 'Apartment is sold.'
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_apartment
@@ -81,6 +89,6 @@ class ApartmentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def apartment_params
-      params.require(:apartment).permit(:address, :price, :latitude, :longtitude, :district, :description, :size, :year_built, :bedrooms, :elevator, :furnished, photos_attributes: [:img])
+      params.require(:apartment).permit(:status, :address, :price, :latitude, :longtitude, :district, :description, :size, :year_built, :bedrooms, :elevator, :furnished, photos_attributes: [:img])
     end
 end

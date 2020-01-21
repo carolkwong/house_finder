@@ -11,7 +11,8 @@ class BookingsController < ApplicationController
   end
 
   def new
-    @booking = Booking.new(apartment: @apartment)
+    @booking = Booking.new
+    @booking.apartment = @apartment
     authorize @booking
   end
 
@@ -23,7 +24,7 @@ class BookingsController < ApplicationController
     @booking = Booking.new(booking_params)
     @booking.state = "pending"
     @booking.user = current_user
-    @booking.update(price:100)
+    @booking.price = 100
 
     authorize @booking
 

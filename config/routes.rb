@@ -8,12 +8,14 @@ Rails.application.routes.draw do
 
   devise_for :users
   resources :users, only: [:show] do
+
   	member do
   		get 'edit_profile'
   		patch 'update_profile'
   		get 'edit_avatar'
   		patch 'update_avatar'
   	end
+    
   end
 
   resources :apartments do
@@ -23,8 +25,12 @@ Rails.application.routes.draw do
     collection do
       get 'district/:district', to: 'apartments#index_district'
     end
+
+    member do
+      get 'sold', to: 'apartments#sold'
+    end
   end
-  
+
   resources :bookings, except: [:new] do #remove new from bookings
     resources :payments, only: [:new, :create]
   end
