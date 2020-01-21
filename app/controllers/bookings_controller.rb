@@ -11,11 +11,7 @@ class BookingsController < ApplicationController
   end
 
   def new
-    @apartment = Apartment.find(params[:id])
-
-    @booking = Booking.new
-
-    @booking.apartment = @apartment
+    @booking = Booking.new(apartment: @apartment)
     authorize @booking
   end
 
@@ -24,7 +20,6 @@ class BookingsController < ApplicationController
   end
 
   def create
-
     @booking = Booking.new(booking_params)
     @booking.state = "pending"
     @booking.user = current_user
@@ -42,13 +37,13 @@ class BookingsController < ApplicationController
 
   def update
     authorize @booking
-      if @booking.update(booking_params)
-        redirect_to @booking, notice: 'Booking was successfully updated.'
-        # send email if booking is updated
-        send_amendment_email(@booking)
-      else
-        render :edit, alert: 'Error on updating booking.'
-      end
+    if @booking.update(booking_params)
+      redirect_to @booking, notice: 'Booking was successfully updated.'
+      # send email if booking is updated
+      send_amendment_email(@booking)
+    else
+      render :edit, alert: 'Error on updating booking.'
+    end
   end
 
   def destroy
@@ -61,13 +56,12 @@ class BookingsController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
-
     def set_booking
       @booking = Booking.find(params[:id])
     end
 
     def set_apartment
-      @apartment = Apartment.find(params[:id])
+      @apartment = Apartment.find(params[:apartment_id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
@@ -75,6 +69,7 @@ class BookingsController < ApplicationController
       params.require(:booking).permit(:book_date, :state, :book_time, :content, :location, :user_id, :apartment_id)
     end
 
+    # Group email groups into meaningful actions
     def send_amendment_email(booking)
       BookingMailer.with(booking_id: booking.id).amendment_host.deliver_later
       BookingMailer.with(booking_id: booking.id).amendment_user.deliver_later
