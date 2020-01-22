@@ -31,7 +31,7 @@
           <% end %>
 
           <% if policy(apartment).sold? && apartment.status != "Sold" %>
-            <%= link_to 'Sold', sold_apartment_path(apartment), class: "ml-1 btn btn-sm btn-success" %>
+            <%= link_to 'Set Sold', sold_apartment_path(apartment), class: "ml-1 btn btn-sm btn-success" %>
           <% end %>
 
 

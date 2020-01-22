@@ -1,6 +1,10 @@
+import 'lightgallery.js';
+import 'jquery-ui-bundle';
+
 const initApartmentShow = () => {
 
   if ($(".apartment_show_page").length) {
+    lightGallery(document.getElementById('gallery')); 
 
     let places = [];
 
@@ -14,14 +18,14 @@ const initApartmentShow = () => {
         img: data.dataset.img,
       }
       places.push(place_data);
-
+ 
     })
-    const hk_center = { lat: 22.35, lng: 114.12 };
+    const apartment_center = { lat: Number(map_data[0].dataset.latitude), lng: Number(map_data[0].dataset.longtitude) };
     
     const map = new google.maps.Map(
       document.getElementById('map'), {
-        zoom: 11,
-        center: hk_center,
+        zoom: 17,
+        center: apartment_center,
         mapTypeControl: false,
         zoomControl: true,
         zoomControlOptions: {
