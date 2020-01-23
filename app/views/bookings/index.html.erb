@@ -1,60 +1,55 @@
 <!-- ADJUST TO BOOKING INDEX, USE APARTMENT #INDEX AS BASE -->
 <div class="container my-4">
-    <h1>Bookings</h1>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Apartment Address</th>
-                <th>Booked Date</th>
-                <th>Booked Time</th>
-                <th>Meeting Location</th>
-                <th>Message</th>
-                <th>Viewing Fee</th>
-              <th colspan="3"></th>
-            </tr>
-        </thead>
-        <tbody>
-            <% @bookings.each do |booking| %>
-            <tr>
-                <td>
-                    <%= booking.apartment.address %>
-                </td>
-                <td>
-                    <%= booking.book_date %>
-                </td>
-                <td>
+    <h1>My Bookings</h1>
+    <% @bookings.each do |booking| %>
+    <div class="card rounded-lg w-100 my-3">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <h4 class="my-3">
+                        <%= booking.apartment.description? ? booking.apartment.description : booking.apartment.address  %>
+                    </h4>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div>
+                        <small>User:</small><br>
+                        <%= booking.user.full_name %>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div>
+                        <small>Host:</small><br>
+                        <%= booking.apartment.user.full_name %>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <small>Meetup time</small><br>
+                    <%= booking.book_date %><br>
                     <%= booking.book_time.strftime("%H:%M") %>
-                </td>
-                <td>
+                </div>
+                <div class="col-6 col-md-3">
+                    <small>Meetup location</small><br>
                     <%= booking.location %>
-                </td>
-                <td>
-                    <%= booking.content %>
-                </td>
-                <td>
-                    <%= humanized_money_with_symbol(booking.price) %>
-                </td>
-
-
-                <% if policy(booking).show? %>
-                <td>
-                    <%= link_to 'Show', booking_path(booking) %>
-                </td>
-                <% end %>
-                <% if policy(booking).edit? %>
-                <td>
-                    <%= link_to 'Edit', edit_booking_path(booking) %>
-                </td>
-                <% end %>
-                <% if policy(booking).destroy? %>
-                <td>
-                    <%= link_to 'Destroy', booking_path(booking), method: :delete, data: { confirm: 'Are you sure?' } %>
-                </td>
-                <%end%>
-            </tr>
-            <% end %>
-        </tbody>
-    </table>
+                </div>
+                <div class="col-6 col-md-3">
+                    <small>Message</small><br>
+                    <%= simple_format(booking.content) %>
+                </div>
+                <div class="col-6 col-md-3 py-2">
+                    <% if policy(booking).show? %>
+                    <%= link_to 'Details', booking_path(booking), class: "btn btn-primary btn-sm my-1" %>
+                    <% end %>
+                    <% if policy(booking).edit? %>
+                    <%= link_to 'Edit', edit_booking_path(booking), class: "btn btn-primary btn-sm my-1" %>
+                    <% end %>
+                    <% if policy(booking).destroy? %>
+                    <%= link_to 'Destroy', booking_path(booking), class: "btn btn-danger btn-sm my-1", method: :delete, data: { confirm: 'Are you sure?' } %>
+                    <% end %>
+                </div>
+            </div>
+        </div>
+    </div>
+    <% end %>
     <br>
     <% if policy(Booking).create? %>
     <%#= link_to 'New Booking', new_booking_path, :class => 'btn btn-primary' %>
