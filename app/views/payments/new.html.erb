@@ -1,20 +1,21 @@
 <div class="container">
-  <div class="row py-4">
+  <div class="row py-4 text-center">
 
-    <%= form_tag booking_payments_path(@booking) do %>
-    <h1>Payment Summary</h1>
+    <div class="card w-100 rounded-lg">
 
-    <p>Payment of <%=humanized_money_with_symbol@booking.price %></p>
+    <%= form_tag booking_payments_path(@booking), class:"w-100 my-5" do %>
+    <h1 class="mb-5">Please pay <%=humanized_money_with_symbol@booking.price %> to proceed the booking.</h1>
 
     <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-
-    data-key="<%=Rails.configuration.stripe[:publishable_key]%>"
-    data-book_date="<%=@booking.book_date %>"
-    data-book_time="<%=@booking.book_time.strftime("%H:%M") %>"
-    data-location="<%=@booking.location %>"
-    data-currency="<%=@booking.price.currency %>" >
+        data-key="<%=Rails.configuration.stripe[:publishable_key]%>"
+        data-book_date="<%=@booking.book_date %>"
+        data-book_time="<%=@booking.book_time.strftime("%H:%M") %>"
+        data-location="<%=@booking.location %>"
+        data-currency="<%=@booking.price.currency %>" >
     </script>
     <% end %>
+
+    </div>
   </div>
 
 

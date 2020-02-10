@@ -29,6 +29,10 @@ class ApartmentPolicy < ApplicationPolicy
        user_is_owner_or_admin?
     end
 
+    def sold?
+       user_is_owner_or_admin?
+    end
+
     def index?
       true
     end

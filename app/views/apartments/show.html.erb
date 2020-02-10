@@ -13,55 +13,72 @@
                     </ul>
                 </div>
                 <div id="map"></div>
-                <p>
-                    <strong>Status:</strong>
-                    <%= @apartment.status %>
-                </p>
-                <p>
-                    <strong>Address:</strong>
-                    <%= @apartment.address %>
-                </p>
-                <p>
-                    <strong>Price:</strong>
-                    <%= @apartment.price %>
-                </p>
-                <p>
-                    <strong>District:</strong>
-                    <%= @apartment.district %>
-                </p>
-                <p>
-                    <strong>Description:</strong>
-                    <%= @apartment.description %>
-                </p>
-                <p>
-                    <strong>Size:</strong>
-                    <%= @apartment.size %>
-                </p>
-                <p>
-                    <strong>Year built:</strong>
-                    <%= @apartment.year_built %>
-                </p>
-                <p>
-                    <strong>Bedrooms:</strong>
-                    <%= @apartment.bedrooms %>
-                </p>
-                <p>
-                    <strong>Elevator:</strong>
-                    <%= @apartment.elevator %>
-                </p>
-                <p>
-                    <strong>Furnished:</strong>
-                    <%= @apartment.furnished %>
-                </p>
-                <p>
-                    <strong>User:</strong>
-                    <%= @apartment.user.email %>
-                </p>
-                <%= render 'apartment_photos', apartment: @apartment %>
-                <%= link_to 'Edit', edit_apartment_path(@apartment), :class => 'btn btn-primary' %> |
-                <%= link_to 'Back', apartments_path, :class => 'btn btn-primary' %>
+                <div class="card">
+                    <h5 class="card-title mx-4 mt-4 mb-0"><%= @apartment.description %></h5>
+                    <div class="card-body">
+                        <span class="badge <%= @apartment.status == 'Available' ? 'badge-success' : 'badge-secondary' %>"><%= @apartment.status %></span>
 
-                <%= link_to 'Create Booking to View', new_booking_path(@apartment), class: "btn btn-primary " %>
+                        <div class="my-3">
+                            <small>District:</small><br>
+                            <%= @apartment.district %>
+                        </div>
+
+                        <div class="my-3">
+                            <small>Address:</small><br>
+                            <%= @apartment.address %>
+                        </div>
+
+                        <div class="my-3">
+                            <small>Price:</small><br>
+                            <%= humanized_money_with_symbol(@apartment.price) %>
+                        </div>
+
+                        <div class="my-3">
+                            <small>Description:</small><br>
+                            <%= @apartment.description %>
+                        </div>
+
+                        <div class="my-3">
+                            <small>Size:</small><br>
+                            <%= @apartment.size %> sqft
+                        </div>
+
+                        <div class="my-3">
+                            <small>Year built:</small><br>
+                            <%= @apartment.year_built %>
+                        </div>
+
+                        <div class="my-3">
+                            <%= @apartment.bedrooms %> bedrooms
+                        </div>
+
+                        <div class="my-3">
+                            <small>Elevator:</small><br>
+                            <%= @apartment.elevator ? "Yes" : "No" %>
+                        </div>
+
+                        <div class="my-3">
+                            <small>Furnished:</small><br>
+                            <%= @apartment.furnished ? "Yes" : "No" %>
+                        </div>
+
+                        <div class="my-3">
+                            <%= render 'apartment_photos', apartment: @apartment %>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="my-4">
+                    
+
+                    <%= link_to 'Create Booking to View', new_apartment_booking_path(@apartment), class: "btn btn-primary " %>
+                </div>
+                <div>
+                    <%= link_to 'Back', apartments_path, :class => 'btn btn-secondary' %>
+                    <% if policy(@apartment).edit? %>
+                        <%= link_to 'Edit', edit_apartment_path(@apartment), :class => 'btn btn-primary' %>
+                    <% end %>
+                </div>
             </div>
         </div>
     </div>

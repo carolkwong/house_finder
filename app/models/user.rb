@@ -7,4 +7,15 @@ class User < ApplicationRecord
   has_many :apartment
 
   mount_uploader :avatar, AvatarUploader
+
+  #combine and capitalize first_name + last_name, to full_name
+  def full_name
+    if first_name? && last_name?
+      name_words = first_name.split(" ") + last_name.split(" ")
+      return name_words.map{ |w| w.capitalize }.join(" ")
+    else
+      return email
+    end
+  end
+
 end

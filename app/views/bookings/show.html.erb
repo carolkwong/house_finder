@@ -1,40 +1,41 @@
 <div class="container my-4">
     <div class="row">
         <div class="col-lg-8 offset-lg-2">
-            <p id="notice">
-                <%= notice %>
-            </p>
-            <p>
-                <strong>Apartment Address</strong>
-                <%= @booking.apartment.address %>
-                <!-- [HOW TO RECAP APT DETAILS IN APT MODEL?] -->
-            </p>
-            <p>
-                <strong>Date of Booking</strong>
-                <%= @booking.book_date %>
-            </p>
-            <p>
-                <strong>Time of Booking</strong>
-                <%= @booking.book_time.strftime("%H:%M") %>
-            </p>
-            <p>
-                <strong>Meeting Location</strong>
-                <%= @booking.location %>
-            </p>
-            <p>
-                <strong>Message</strong>
-                <%= @booking.content %>
-            </p>
-            <strong>User:</strong>
-            <%= @booking.user.email %>
-            </p>
-            <p>
-            <strong>Viewing Fee</strong>
-                <%= humanized_money_with_symbol(@booking.price) %>
-            </p>
-
-            <%= link_to 'Edit', edit_booking_path(@booking), :class => 'btn btn-primary' %> |
-            <%= link_to 'Back', bookings_path, :class => 'btn btn-primary' %>
+            <div class="card rounded-lg w-100 my-5">
+                <div class="card-body">
+                    <h2 class="my-4">Booking has been confirmed!</h2>
+                    <p>
+                        <small>Apartment</small><br>
+                        <%= @booking.apartment.description? ? @booking.apartment.description : @booking.apartment.address  %>
+                    </p>
+                    <p>
+                        <small>User:</small><br>
+                        <%= @booking.user.full_name %>
+                    </p>
+                    <p>
+                        <small>Host:</small><br>
+                        <%= @booking.apartment.user.full_name %>
+                    </p>
+                    <p>
+                        <small>Date of Booking</small><br>
+                        <%= @booking.book_date %>
+                    </p>
+                    <p>
+                        <small>Time of Booking</small><br>
+                        <%= @booking.book_time.strftime("%H:%M") %>
+                    </p>
+                    <p>
+                        <small>Meeting Location</small><br>
+                        <%= @booking.location %>
+                    </p>
+                    <p>
+                        <small>Message</small><br>
+                        <%= @booking.content %>
+                    </p>
+                </div>
+            </div>
+            <%= link_to 'Edit', edit_booking_path(@booking), :class => 'btn btn-primary my-2' %><br>
+            <%= link_to 'View my bookings', bookings_path, :class => 'btn btn-secondary my-2' %>
         </div>
     </div>
 </div>

@@ -1,14 +1,29 @@
-<div class="container my-4">
-    <div class="row">
-        <div class="col-lg-8 offset-lg-2">
-            <h1>Pages#home</h1>
-            <p>Find me in app/views/pages/home.html.erb</p>
-            <p>Welcome to this lovely place</p>
-            <%= link_to 'View Apartments', apartments_path, :class => "btn btn-primary" %>
-            <%= link_to 'Add new Apartment', new_apartment_path, :class => "btn btn-primary" %>
-            <%= link_to 'View my Bookings', bookings_path, :class => "btn btn-primary" %>
+<div class="home_page">
+    <section class="landing">
+        <div></div>
+        <div class="card bg-light">
+            <div class="card-body">
+                <h2>Want an apartment?</h2>
+                <!-- TODO : SEARCH BOX -->
+            </div>
+        </div>
+        <div><%= link_to "View all listings", apartments_path, :class => "btn btn-primary btn-sm my-3" %></div>
+    </section>
 
-
+    <div class="container my-4">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2">
+                <h2 class="my-4">Details</h2>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem nesciunt aliquam ab minus consequatur tempore enim pariatur blanditiis fugiat earum nostrum eligendi voluptate ipsam natus, assumenda aspernatur nam corporis, eos.
+            </div>
+            <div class="col-lg-8 offset-lg-2">
+                <h2 class="my-4">Pitch</h2>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem nesciunt aliquam ab minus consequatur tempore enim pariatur blanditiis fugiat earum nostrum eligendi voluptate ipsam natus, assumenda aspernatur nam corporis, eos.
+            </div>
+            <div class="col-lg-8 offset-lg-2">
+                <h2 class="my-4">Ads</h2>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem nesciunt aliquam ab minus consequatur tempore enim pariatur blanditiis fugiat earum nostrum eligendi voluptate ipsam natus, assumenda aspernatur nam corporis, eos.
+            </div>
         </div>
     </div>
 </div>

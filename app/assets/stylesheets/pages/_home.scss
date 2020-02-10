@@ -1,1 +1,13 @@
-// Specific CSS for your home-page
+.home_page{
+	.landing{
+		height: calc(100vh - 66px);
+		background: url(asset_path("shared/apartment_banner.jpg"));
+		background-size: cover;
+		background-position: center;
+		display: flex;
+    	flex-direction: column;
+		align-items: center;
+		justify-content: space-between;
+	}
+
+}

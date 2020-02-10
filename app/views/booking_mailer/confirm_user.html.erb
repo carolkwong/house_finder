@@ -1,0 +1,33 @@
+<h1>Booking Confirmation</h1>
+<p>Hello <%= @name %>,</p>
+<p>
+    Your booking has been confirmed as below:
+</p>
+<p>
+    <strong>Apartment Address</strong>
+    <%= @booking.apartment.address %>
+</p>
+<p>
+    <strong>Date of Booking</strong>
+    <%= @booking.book_date %>
+</p>
+<p>
+    <strong>Time of Booking</strong>
+    <%= @booking.book_time.strftime("%H:%M") %>
+</p>
+<p>
+    <strong>Meeting Location</strong>
+    <%= @booking.location %>
+</p>
+<p>
+    <strong>Message</strong>
+    <%= @booking.content %>
+</p>
+<p>
+    <strong>Apartment Host:</strong><br>
+    <span>Name: <%= @host.full_name %></span><br>
+    <span>Phone: <%= @host.phone %></span>
+</p>
+<p>
+    <%= link_to "View details", booking_url(@booking) %>
+</p>
