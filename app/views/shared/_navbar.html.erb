@@ -2,18 +2,27 @@
   <%= link_to root_path, class: "navbar-brand" do %>
     <%= image_tag "logo.png" %>
     House Finder
-  <% end %>
+
 
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
+<div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+  <div class="flex-grow-1 d-flex">
+      <form class="form-inline flex-nowrap bg-light mx-0 mx-lg-auto rounded p-1">
+      <%= form_tag apartments_path, :method => :get do %>​
+     <%= text_field_tag :query, params[:query], class: "form-control mr-sm-2", placeholder: "Find an apartment" %>
+        <button class="btn btn-primary" type="submit">Search</button>
+        <% end %>
+    <% end %>
+  </form>
+</div>
   <!-- TODO : SEARCH BAR -->
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
+      <ul class="navbar-nav mr-auto">
       <% if user_signed_in? %>
-
 
          <li class="dropdown nav-link">
           <a id="navbar_apartment_dropdown" class="dropdown nav-item" style="cursor: pointer;" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -81,7 +90,7 @@
           </ul>
         </li>
 
-        
+
       <% else %>
 
         <li class="nav-item">
@@ -91,3 +100,5 @@
     </ul>
   </div>
 </div>
+
+

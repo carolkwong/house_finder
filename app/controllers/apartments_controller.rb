@@ -3,18 +3,22 @@ class ApartmentsController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :index_district]
 
   def index
+    ​if​ params[​:query​].​present?
+    @apartments ​=​ ​policy_scope(Apartment)​.​where​(​"address ILIKE ?", "%#{params[​:query​]}%") ​
+    else
     @apartments = policy_scope(Apartment).order(created_at: :desc)
+    end
     authorize :apartment, :index?
   end
 
   def index_district
     @district = params["district"]
     @apartments = policy_scope(Apartment).where(district: params[:district]).order(created_at: :desc)
-    
+
     if @apartments.count == 0
       @apartments = policy_scope(Apartment).order(created_at: :desc)
     end
-    
+
     authorize :apartment, :index_district?
     render :index
   end
@@ -70,7 +74,7 @@ class ApartmentsController < ApplicationController
   def destroy
     authorize @apartment
     @apartment.destroy
-    
+
     redirect_to apartments_url, notice: 'Apartment was successfully destroyed.'
   end
 
