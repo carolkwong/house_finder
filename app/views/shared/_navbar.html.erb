@@ -1,7 +1,10 @@
 <div class="navbar navbar-expand-sm navbar-light navbar-house-finder">
+
+  <!-- top left link with logo -->
   <%= link_to root_path, class: "navbar-brand" do %>
     <%= image_tag "logo.png" %>
     House Finder
+  <% end %>
 
 
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -11,13 +14,13 @@
 <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
   <div class="flex-grow-1 d-flex">
-      <form class="form-inline flex-nowrap bg-light mx-0 mx-lg-auto rounded p-1">
-      <%= form_tag apartments_path, :method => :get do %>​
-     <%= text_field_tag :query, params[:query], class: "form-control mr-sm-2", placeholder: "Find an apartment" %>
-        <button class="btn btn-primary" type="submit">Search</button>
-        <% end %>
+    
+    <!-- search form with styles -->
+    <%= form_tag apartments_path, :method => :get, :class => 'form-inline flex-nowrap bg-light mx-0 mx-lg-auto rounded p-1' do %>​
+      <%= text_field_tag :query, params[:query], class: "form-control mr-sm-2", placeholder: "Find an apartment" %>
+      <button class="btn btn-primary" type="submit">Search</button>
     <% end %>
-  </form>
+  
 </div>
   <!-- TODO : SEARCH BAR -->
 
