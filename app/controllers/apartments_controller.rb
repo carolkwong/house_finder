@@ -3,11 +3,12 @@ class ApartmentsController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :index_district]
 
   def index
-    ​if​ params[​:query​].​present?
-    @apartments ​=​ ​policy_scope(Apartment)​.​where​(​"address ILIKE ?", "%#{params[​:query​]}%") ​
+    if(params[:query].present?)
+      @apartments = policy_scope(Apartment).where("address ILIKE ?", "%#{ params[:query]}%")
     else
-    @apartments = policy_scope(Apartment).order(created_at: :desc)
+      @apartments = policy_scope(Apartment).all
     end
+    
     authorize :apartment, :index?
   end
 
